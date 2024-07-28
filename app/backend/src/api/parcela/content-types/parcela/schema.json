@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parcelas",
+  "info": {
+    "singularName": "parcela",
+    "pluralName": "parcelas",
+    "displayName": "parcela",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tamanio": {
+      "type": "integer",
+      "required": true
+    },
+    "tipo_cultivo": {
+      "type": "string"
+    },
+    "geom": {
+      "type": "customField",
+      "customField": "plugin::postgis.map"
+    },
+    "actividad_agronomicas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::actividad-agronomica.actividad-agronomica"
+    }
+  }
+}

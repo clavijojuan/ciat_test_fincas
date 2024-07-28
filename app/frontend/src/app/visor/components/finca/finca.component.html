@@ -1,0 +1,77 @@
+<p-dialog [header]=" id ? 'Parcela' : 'Nueva parcela'" [modal]="false" [(visible)]="visible" [style]="{ width: '50%' }"
+    position="bottomright" [draggable]="true" [resizable]="false" (onHide)="close()">
+    <p-tabView>
+        <p-tabPanel header="Información general">
+            <form [formGroup]="fincaForm">
+
+                <div class="grid">
+
+                    <div class="col-6 flex flex-column gap-2">
+                        <label for="lat">Latitud*</label>
+                        <p-inputNumber inputId="lat" formControlName="lat" />
+                    </div>
+
+                    <div class="col-6 flex flex-column gap-2">
+                        <label for="lng">Longitud*</label>
+                        <p-inputNumber inputId="lng" formControlName="lng" />
+                    </div>
+
+                    <div class="col-6 flex flex-column gap-2">
+                        <label for="tamanio">Tamaño*</label>
+                        <p-inputNumber inputId="tamanio" formControlName="tamanio" />
+                    </div>
+
+                    <div class="col-6 flex flex-column gap-2">
+                        <label for="tipo_cultivo">Tipo de cultivo*</label>
+                        <input type="text" pInputText formControlName="tipo_cultivo" />
+                    </div>
+                </div>
+            </form>
+        </p-tabPanel>
+        <p-tabPanel header="Actividades Agronómicas" [disabled]="!fincaForm.valid">
+
+            <div class="flex flex-row-reverse">
+                <button pButton pRipple label="Agregar" (click)="addActivity()" severity="warning"
+                    [disabled]="!fincaForm.valid">
+                </button>
+            </div>
+
+            <ng-container *ngFor="let group of actividadForm.controls">
+
+                <div class="grid mt-2" [formGroup]="group">
+
+                    <div class="col-3 flex flex-column gap-2">
+                        <label for="fecha">Fecha*</label>
+                        <p-calendar appendTo="body" formControlName="fecha" />
+                    </div>
+
+                    <div class="col-3 flex flex-column gap-2">
+                        <label for="tipo_actividad">Tipo actividad*</label>
+                        <input type="text" pInputText formControlName="tipo_actividad" />
+                    </div>
+
+                    <div class="col-3 flex flex-column gap-2">
+                        <label for="insumos">Insumos*</label>
+                        <input type="text" pInputText formControlName="insumos" />
+                    </div>
+
+                    <div class="col-3 flex flex-column gap-2">
+                        <label for="duracion">Duración*</label>
+                        <p-inputNumber inputId="duracion" formControlName="duracion" />
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+
+        </p-tabPanel>
+    </p-tabView>
+
+    <div *ngIf="isValid() && actividadForm.controls.length" class="flex flex-row-reverse gap-2 pr-3">
+        <button pButton pRipple label="Guardar" class="p-button-success" [disabled]="!isValid()" (click)="save()">
+        </button>
+        <button pButton pRipple label="Reiniciar" severity="secondary" [disabled]="!isValid()" (click)="reset()">
+        </button>
+    </div>
+</p-dialog>

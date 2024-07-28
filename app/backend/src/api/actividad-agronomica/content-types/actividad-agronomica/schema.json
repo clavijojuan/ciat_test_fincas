@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "actividad_agronomicas",
+  "info": {
+    "singularName": "actividad-agronomica",
+    "pluralName": "actividad-agronomicas",
+    "displayName": "actividad_agronomica"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fecha": {
+      "type": "datetime",
+      "required": true
+    },
+    "tipo_actividad": {
+      "type": "string",
+      "required": true
+    },
+    "insumos": {
+      "type": "text"
+    },
+    "duracion": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
